@@ -1,7 +1,7 @@
 This repo hosts files related to the load test MirageOS project described in
 http://canopy .mirage.io/Projects/load ## Dev boxelopment
 
-
+# Dev box
 
 The development machine is defined using a [packer](https://www.packer.io/) template
 and some helper files, all under the `image` directory. For generating the image you need

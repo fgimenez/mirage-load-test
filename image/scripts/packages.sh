@@ -1,10 +1,7 @@
 DEV_PACKAGES="
 curl
-emacs24-nox
-htop
 nmon
 slurm
-tcpdump
 unzip
 "
 
@@ -28,6 +25,13 @@ camlp4-extra
 m4
 opam
 "
+
+# apt-get sometimes hangs on security.ubuntu.com with IPv6.
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+
+if [ "$UPDATE" = true ]; then
+    apt-get update
+fi
 
 if [[ $INSTALL_DEV_PACKAGES  =~ true || $INSTALL_DEV_PACKAGES =~ 1 ||
         $INSTALL_DEV_PACKAGES =~ yes ]]; then

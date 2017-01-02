@@ -6,7 +6,7 @@ http://canopy.mirage.io/Projects/load
 The development machine is defined using a [packer](https://www.packer.io/) template
 and some helper files, all under the `image` directory. For generating the image you need
 a recent version of packer (tested with v0.11.0) and qemu with kvm support, on a ubuntu
-16.04 box you need to execute:
+16.04 host you need to execute:
 
     $ sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
 

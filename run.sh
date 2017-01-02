@@ -32,7 +32,7 @@ fi
 
 # start instance
 trap 'systemctl --user stop mlt-vm' EXIT
-systemd-run --user --uid=${UID} --unit mlt-vm kvm -m 1024 -nographic -snapshot -netdev user,id=mynet0,hostfwd=tcp::${PORT}-:22 -netdev user,id=mynet1 -device pcnet,netdev=mynet0 -device pcnet,netdev=mynet1 "$IMAGE_FILE"
+systemd-run --user --unit mlt-vm kvm -m 1024 -nographic -snapshot -netdev user,id=mynet0,hostfwd=tcp::${PORT}-:22 -netdev user,id=mynet1 -device pcnet,netdev=mynet0 -device pcnet,netdev=mynet1 "$IMAGE_FILE"
 
 # wait for ssh
 wait_for_ssh

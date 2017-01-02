@@ -1,5 +1,5 @@
 This repo hosts files related to the load test MirageOS project described in
-http://canopy .mirage.io/Projects/load ## Dev boxelopment
+http://canopy.mirage.io/Projects/load
 
 # Dev box
 

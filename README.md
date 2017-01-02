@@ -22,3 +22,6 @@ You can start it from the project's root with:
 After a few seconds the instance will be accessible through ssh with this command:
 
     $ ssh -i ./image/keypair/private -p 8022 mlt@localhost
+
+The complete process of image creation, instance spin up and remote execution of
+commands on it is automated in the `run.sh` script at the root of the project.

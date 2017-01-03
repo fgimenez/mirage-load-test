@@ -1,5 +1,7 @@
 su -l -c "opam init -a" mlt
-su -l -c "opam remote add mirage-dev git://github.com/mirage/mirage-dev" mlt
 su -l -c "opam update" mlt
 su -l -c "opam upgrade -y" mlt
-su -l -c "opam install mirage -v" mlt
+su -l -c "opam switch 4.01.0" mlt
+su -l -c "eval `opam config env`" mlt
+su -l -c "opam install -y cmdliner io-page lwt mirage-block-unix mirage-block-xen mirage-types vhd-format xen-evtchn xen-gnt xenstore xenstore_transport" mlt
+su -l -c "git clone https://github.com/mirage/xen-disk /home/mlt/xen-disk"

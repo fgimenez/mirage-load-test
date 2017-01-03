@@ -24,6 +24,7 @@ camlp4
 camlp4-extra
 m4
 opam
+pkg-config
 "
 
 # apt-get sometimes hangs on security.ubuntu.com with IPv6.

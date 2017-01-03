@@ -1,11 +1,4 @@
-DEV_PACKAGES="
-curl
-nmon
-slurm
-unzip
-"
-
-ESSENTIAL_PACKAGES="
+PACKAGES="
 ntp
 nfs-common
 xen-hypervisor-4.4-amd64
@@ -35,9 +28,4 @@ if [ "$UPDATE" = true ]; then
     apt-get update
 fi
 
-if [[ $INSTALL_DEV_PACKAGES  =~ true || $INSTALL_DEV_PACKAGES =~ 1 ||
-        $INSTALL_DEV_PACKAGES =~ yes ]]; then
-  apt-get -y install $DEV_PACKAGES
-fi
-
-apt-get -y install $ESSENTIAL_PACKAGES
+apt-get -y --no-install-recommends install $PACKAGES

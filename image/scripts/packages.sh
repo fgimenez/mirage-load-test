@@ -25,6 +25,7 @@ camlp4-extra
 m4
 opam
 pkg-config
+libxen-dev
 "
 
 # apt-get sometimes hangs on security.ubuntu.com with IPv6.

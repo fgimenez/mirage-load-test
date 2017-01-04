@@ -1,25 +1,53 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eu
 
 PORT=8022
 IMAGE_FILE=${PWD}/image/output-mlt/mlt
 
+show_msg(){
+    local msg="$1"
+    local color_code="$2"
+
+    echo -e "\033[0;${color_code}m${msg}\033[0m"
+}
+
+show_success(){
+    show_msg "$1" "32"
+}
+
+show_failure(){
+    show_msg "$1" "31"
+}
+
 execute_remote_command(){
     ssh -i image/keypair/private -p ${PORT} -q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no mlt@localhost "$*"
 }
 
 wait_for_ssh(){
-    echo "Waiting for machine up and reachable..."
+    echo "Waiting for machine up..."
     retry=30
     while ! execute_remote_command true; do
         retry=$(( retry - 1 ))
         if [ $retry -le 0 ]; then
-            echo "Timed out waiting for ssh. Aborting!"
+            show_failure "Timed out waiting for ssh. Aborting!"
             exit 1
         fi
         sleep 10
     done
+    show_success "Done"
+}
+
+compile_xen_disk(){
+    (
+        echo "Compiling xen-disk..."
+        if execute_remote_command ". /home/mlt/.profile && cd /home/mlt/xen-disk && make"; then
+            show_success "xen-disk compiled"
+        else
+            show_failure "xen-disk failed to compile"
+            exit 1
+        fi
+    )
 }
 
 # check if image exists, create if not
@@ -44,6 +72,6 @@ systemd-run --user \
 # wait for ssh
 wait_for_ssh
 
-# TODO: on instance: compile unikernel
+compile_xen_disk
 
 # TODO: on instance: execute unikernel and save log

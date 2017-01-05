@@ -90,7 +90,7 @@
         "memory": "1024",
         "preseed" : "preseed.cfg",
         "hostname": "mirage-load-test",
-        "ocaml_version": "4.03.0",
+        "ocaml_version": "4.01.0",
         "ssh_fullname": "mlt",
         "ssh_password": "mlt",
         "ssh_username": "mlt",
